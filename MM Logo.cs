@@ -1,69 +1,69 @@
-﻿using System;
+using System;
 
 namespace ConsoleApp8
 {
     class Program
     {
         static int k, count = 0,count2 = 0;
-        static void TopHalfOfM(int Size, int i)
+        static void TopHalfOfM(int size, int rows)
         {
-            Minuses(Size - i);
-            Stars(Size + (i * 2));
-            Minuses(Size - (i * 2));
-            Stars(Size + (i * 2));
-            Minuses(Size - i);
+            Minuses(size - rows);
+            Stars(size + (rows * 2));
+            Minuses(size - (rows * 2));
+            Stars(size + (rows * 2));
+            Minuses(size - rows);
         }
-        static void BottomHalfOfM(int Size,int i,int j)
+        static void BottomHalfOfM(int size,int rows,int j)
         {
             if (j == 0)
             {
-                Minuses(Size - i);
-                Stars(Size);
+                Minuses(size - rows);
+                Stars(size);
                 Minuses(1 + count);
-                Stars((Size * 2) - 1 - count);
+                Stars((size * 2) - 1 - count);
                 Minuses(1 + count);
-                Stars(Size);
-                Minuses(Size - i);
+                Stars(size);
+                Minuses(size - rows);
                 count += 2;
             }
             else
             {
-                Minuses(Size - i);
-                Stars(Size);
+                Minuses(size - rows);
+                Stars(size);
                 Minuses(1 + count2);
-                Stars((Size * 2) - 1 - count2);
+                Stars((size * 2) - 1 - count2);
                 Minuses(1 + count2);
-                Stars(Size);
-                Minuses(Size - i);
+                Stars(size);
+                Minuses(size - rows);
                 count2 += 2;
             }
         }
-        static void Stars(int number)
+        static void Stars(int numberOfStars)
         {
-            for (k = 0; k < number; k++)
+            for (k = 0; k < numberOfStars; k++)
                 Console.Write("*");
         }
-        static void Minuses(int number)
+        static void Minuses(int numberOfMinuses)
         {
-            for (k = 0; k < number; k++)
+            for (k = 0; k < numberOfMinuses; k++)
                 Console.Write("-");
         }
         static void Main(string[] args)
         {
             Console.Write("N=");
-            int Size = int.Parse(Console.ReadLine());
+            int size = int.Parse(Console.ReadLine());
 
-            for (int i = 0; i <= Size; i++)
+            for (int rows = 0; rows <= size; rows++)
             {
                 for (int j = 0; j < 2; j++)
                 {
-                    if (((Size + 1) / 2 >= i) && (Size > (i * 2)))
+                    if (((size + 1) / 2 >= rows) && (size > (rows * 2)))
                     {
-                        TopHalfOfM(Size, i);
+                        TopHalfOfM(size, rows);
                     }
                     else
                     {
-                        BottomHalfOfM(Size, i, j);
+                        BottomHalfOfM(size, rows, j);
                     }   
                 }
                 Console.WriteLine();
